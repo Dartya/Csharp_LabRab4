@@ -12,6 +12,12 @@
 
 // ЗАДАНИЕ 1
 
+    /*ссылки: 
+    составное форматирование: https://docs.microsoft.com/ru-ru/dotnet/standard/base-types/composite-formatting
+    decimal: https://docs.microsoft.com/ru-ru/dotnet/csharp/language-reference/keywords/decimal
+    еще про форматирование строк: https://msdn.microsoft.com/ru-ru/library/system.string.format(v=vs.110).aspx
+    */
+
 namespace Csharp_LabRab4
 {
     public class Worker {
@@ -19,8 +25,8 @@ namespace Csharp_LabRab4
         string company;             //имя компании
         DateTime employment_data;   //дата устройства на работу - определить для каждого объекта через конструктор
         string employment_data_str; //дата устройства на работу в формате строки
-        double salesRUB;            //сумма продаж в рублях
-        double salesEUR;            //сумма продаж в евро
+        decimal salesRUB;            //сумма продаж в рублях
+        decimal salesEUR;            //сумма продаж в евро
         char RUB = '₽';             //символ рубля
         char EUR = '€';             //символ евро
         string salesRUBStr;         //формируемая строка суммы продаж в рублях
@@ -30,8 +36,8 @@ namespace Csharp_LabRab4
             name = n;
             company = c;
             employment_data = new DateTime(y, m, d);
-            salesRUB = sR;
-            salesEUR = sE;
+            salesRUB = (decimal)sR;                     //используем явное приведение типов от double к decimal ввиду того, что, если мы будем принимать на вход метода значение decimal, 
+            salesEUR = (decimal)sE;                     //при указании значения в параметрах вывода при его вызове в конце значения придется ставить суффикс m для явного обозначения числа как decimal. 
             salesRUBStr = Convert.ToString(salesRUB) + Convert.ToString(RUB);
             salesEURStr = Convert.ToString(salesEUR) + Convert.ToString(EUR);
             employment_data_str = employment_data.ToShortDateString();
@@ -53,9 +59,9 @@ namespace Csharp_LabRab4
         {
             try
             {
-                Worker vanya = new Worker("Ваня", "\"Доза\"", 2018, 8, 1, 100000.50, 0);
+                Worker vanya = new Worker("Ваня", "\"Доза\"", 2018, 8, 1, 12345.70, 0);
                 Console.WriteLine("Имя    |  Компания  |   Дата устройства   |  Продажи");
-                Console.WriteLine(vanya.getWorkerInfo(1));
+                Console.WriteLine(vanya.getWorkerInfo(0));
             }
             catch (Exception e) {
                 Console.WriteLine(e.ToString()); 
