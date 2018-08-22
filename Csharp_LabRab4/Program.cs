@@ -25,8 +25,8 @@ namespace Csharp_LabRab4
         string company;             //имя компании
         DateTime employment_data;   //дата устройства на работу - определить для каждого объекта через конструктор
         string employment_data_str; //дата устройства на работу в формате строки
-        decimal salesRUB;            //сумма продаж в рублях
-        decimal salesEUR;            //сумма продаж в евро
+        decimal salesRUB;           //сумма продаж в рублях
+        decimal salesEUR;           //сумма продаж в евро
         char RUB = '₽';             //символ рубля
         char EUR = '€';             //символ евро
         string salesRUBStr;         //формируемая строка суммы продаж в рублях
@@ -46,9 +46,9 @@ namespace Csharp_LabRab4
         public string getWorkerInfo(int param) {   //параметр вывода строки: 1 - выводит продажи в рублях, все остальное - в рублях
             string result;      //результат формирования строки
             if (param == 1)
-                result = name + ", " + company + ", " + employment_data_str + ", " + salesEURStr;
+                result = String.Format("{0, -10} | {1, -10} | {2, -15} | {3, -15} ", name, company, employment_data_str, salesEURStr);
             else
-                result = name + ", " + company + ", " + employment_data_str + ", " + salesRUBStr;
+                result = String.Format("{0, -10} | {1, -10} | {2, -15} | {3, -15} ", name, company, employment_data_str, salesRUBStr);
             return result;
         }
     }
@@ -60,8 +60,17 @@ namespace Csharp_LabRab4
             try
             {
                 Worker vanya = new Worker("Ваня", "\"Доза\"", 2018, 8, 1, 12345.70, 0);
-                Console.WriteLine("Имя    |  Компания  |   Дата устройства   |  Продажи");
-                Console.WriteLine(vanya.getWorkerInfo(0));
+                Worker sonya = new Worker("Соня", "\"МИЭТ\"", 2017, 02, 01, 54321.65, 0);
+                Worker slava = new Worker("Слава", "\"Пятерка\"", 2016, 4, 5, 0, 12345.70);
+                Worker klava = new Worker("Клава", "\"Магнит\"", 2015, 05, 03, 0, 54321.65);
+                Worker[] aWorker = {vanya, sonya, slava, klava};
+                Console.WriteLine("{0, -10} | {1, -10} | {2, -15} | {3, -15} ", "Имя", "Компания", "Дата устройства", "Продажи");
+                for (int i = 0; i<2; i++){
+                    Console.WriteLine(aWorker[i].getWorkerInfo(0));
+                }
+                for (int i = 2; i<4; i++){
+                    Console.WriteLine(aWorker[i].getWorkerInfo(1));
+                }
             }
             catch (Exception e) {
                 Console.WriteLine(e.ToString()); 
