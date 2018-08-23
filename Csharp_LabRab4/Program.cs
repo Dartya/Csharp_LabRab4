@@ -43,6 +43,8 @@ namespace Csharp_LabRab4
             employment_data_str = employment_data.ToShortDateString();
         }
 
+        public string Name { get => name; set => name = value; }    //автоматически сгенерированные геттер и сеттер переменной класса
+
         public string getWorkerInfo(int param) {   //параметр вывода строки: 1 - выводит продажи в рублях, все остальное - в рублях
             string result;      //результат формирования строки
             //{0, -10} - индексированныей местозаполнитель, который называется элементом форматирования и соответствует объекту из списка, 
@@ -66,6 +68,15 @@ namespace Csharp_LabRab4
                 Worker slava = new Worker("Слава", "\"Пятерка\"", 2016, 4, 5, 0, 12345.70);
                 Worker klava = new Worker("Клава", "\"Магнит\"", 2015, 05, 03, 0, 54321.65);
                 Worker[] aWorker = {vanya, sonya, slava, klava};
+                
+                Console.WriteLine("Проверка работы геттера и сеттера:");
+                string vanyaname = vanya.Name;
+                Console.WriteLine(vanyaname);
+                vanya.Name = "Иван";
+                vanyaname = vanya.Name;
+                Console.WriteLine(vanyaname+"\n");
+
+
                 Console.OutputEncoding = System.Text.Encoding.Unicode;  //эту строчку необходимо вставить непосредственно перед консольным выводом, чтобы корректно отобразить символы валют
                 //при этом корректно отобразить рубль так и не получилось, поэтому отображаться будет доллар ((( #рубльживи
                 Console.WriteLine("{0, -10} | {1, -10} | {2, -15} | {3, -15} ", "Имя", "Компания", "Дата устройства", "Продажи");
