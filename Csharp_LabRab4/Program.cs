@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 /* 
 ЗАДАНИЕ 1
@@ -87,6 +88,35 @@ namespace Csharp_LabRab4
                 for (int i = 2; i<4; i++){
                     Console.WriteLine(aWorker[i].getWorkerInfo(1));
                 }
+                Console.WriteLine("");
+
+                /*ЗАДАНИЕ 2
+                класс StringBuilder нужен тогда, когда предстоит работать со строкой с часто изменяемой длиной
+                имеет два главных свойства:
+                Length, показывающее длину строки, содержащуюся в объекте в данный момент
+                Capacity, указывающее максимальную длину строки, которая может поместиться в выделенную для объекта память 
+                */
+
+                char[] ch = new char[20];
+                StringBuilder hello = new StringBuilder("Начало выполнения задания №2",100);
+                //нужно написать два генератора случайных чисел - один для генерации short числа c последующим переводом в char от 0 до 255
+                //и второй для определения числа символов для записи в объект стрингбилдера
+                Random rnd = new Random(); //Random - класс для генерации случайных чисел
+                int howchar;
+                //int howrepeats;
+                for (int i = 0; i<99; i++){
+                    hello.Clear();
+                    //сколько символов в очередной строке? 0-100
+                    howchar = rnd.Next(20, 100); //получили количество символов
+                    for (int j = 0; j<howchar; j++){
+                        ch[j] = (char)rnd.Next(0, 255);
+                        hello.Append(ch[j]);
+                    }
+                    
+                    Console.WriteLine(hello);
+                }
+                
+
             }
             catch (Exception e) {
                 Console.WriteLine(e.ToString()); 
