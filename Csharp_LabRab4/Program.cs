@@ -97,26 +97,24 @@ namespace Csharp_LabRab4
                 Capacity, указывающее максимальную длину строки, которая может поместиться в выделенную для объекта память 
                 */
 
-                char[] ch = new char[20];
-                StringBuilder hello = new StringBuilder("Начало выполнения задания №2",100);
+                StringBuilder hello = new StringBuilder("Начало выполнения задания №2:");
+                Console.WriteLine(hello);
+                string result1;
                 //нужно написать два генератора случайных чисел - один для генерации short числа c последующим переводом в char от 0 до 255
                 //и второй для определения числа символов для записи в объект стрингбилдера
-                Random rnd = new Random(); //Random - класс для генерации случайных чисел
-                int howchar;
-                //int howrepeats;
-                for (int i = 0; i<99; i++){
-                    hello.Clear();
-                    //сколько символов в очередной строке? 0-100
-                    howchar = rnd.Next(20, 100); //получили количество символов
+                Random rnd = new Random();  //Random - класс для генерации случайных чисел
+                int howchar;                //переменная числа символов в очередной строке
+                hello.Clear();              //очистить объект StringBuilder
+                for (int i = 1; i<=100; i++){                   //для каждой из 100 строк
+                    hello.Append(i + ". ");                     //нумерация строки
+                    howchar = rnd.Next(20, 100);                //задать количество символов
                     for (int j = 0; j<howchar; j++){
-                        ch[j] = (char)rnd.Next(0, 255);
-                        hello.Append(ch[j]);
+                        hello.Append((char)rnd.Next(33, 127));  //добавить к пронумерованной строке случайно сгенерированный символ за номером от 33 до 127 таблицы Unicode (знаки, цифры и латинские буквы)
                     }
-                    
-                    Console.WriteLine(hello);
+                    hello.Append("\n");                         //перевод на новую строку
                 }
-                
-
+                result1 = hello.ToString();                     //записать текст объекта StringBuilder в строковую переменную
+                Console.WriteLine(result1);                     //вывести переменную на экран
             }
             catch (Exception e) {
                 Console.WriteLine(e.ToString()); 
